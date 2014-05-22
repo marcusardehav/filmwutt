@@ -1,0 +1,59 @@
+body {
+	background:linear-gradient(black, grey);
+}
+
+.bannerrama {
+	background: rgba(0, 0, 0, 0.5);
+	position:absolute;
+	margin-left: auto;
+    margin-right: auto;
+	width:889px;
+	left:0;
+	right:0;
+	text-align:center;
+	top:320px;
+	vertical-align: middle;
+}
+.bannerrama #onerow {
+	height:80px;
+	line-height:80px;
+}
+.bannerrama #tworow {
+	height:140px;
+	line-height:80px;
+}
+.image {
+	position:relative;
+    margin-left: auto;
+    margin-right: auto;
+	width:889px;
+	height:500px;
+	background-size:contain;
+}
+#title {
+	opacity:0.7;
+	color:#FFFFFF;
+	font-size:64px;
+	font-family: "Helvetica Neue";
+	padding-left:20px;
+	padding-right:70px;
+}
+#searchy {
+
+
+	width:889px;
+}
+#searchz {
+	margin-left: auto;
+    margin-right: auto;
+	width:889px;
+}
+.bawdy {
+	margin-left: auto;
+    margin-right: auto;
+	width:889px;
+}
+#synopsis {
+	
+	color:black;
+}
