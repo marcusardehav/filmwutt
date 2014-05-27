@@ -1,7 +1,10 @@
-body {
+.main {
 	background:linear-gradient(black, grey);
 }
 
+.lists{
+	background-image:url('reddrapes.jpg');
+}
 .bannerrama {
 	background: rgba(0, 0, 0, 0.5);
 	position:absolute;
@@ -57,3 +60,43 @@ body {
 	
 	color:black;
 }
+.navb {
+	opacity:0.4;
+	position:absolute;
+	top:20px;
+	padding-left:1150px;
+}
+.media-object {
+	height:100px;
+}
+.media {
+	border: 1px black solid;
+	border-radius:10px;
+	width:480px;
+	background: rgba(0, 0, 0, 0.5);
+	color:#f5f5f5;
+}
+
+.boobs:not(:first-child):not(:last-child) >.btn {
+    border-radius: 0;
+	width:70px;
+	background: rgba(0, 0, 0, 0.0);
+	color:#f5f5f5;
+	border:black;
+	height:33.4px;
+}
+.boobs:not(:first-child):not(:last-child) >.btn:hover {
+	color:#7a7a7a;
+}
+.glyphicon-remove {
+	font-size: 1.1em;
+}
+.glyphicon-film {
+	font-size: 1.1em;
+}
+.glyphicon-ok {
+	font-size: 1.1em;
+}
+.media-heading {
+	padding-top:6px;
+	}

@@ -8,18 +8,26 @@
 <link href='http://fonts.googleapis.com/css?family=Bitter:700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 </head>
-<body>
+<body class="main lists">
 
 <?php
-$query = $_POST['booka'];
 $apikey="180365ad85e4661b5bb055d05f7ef904";
-$path="http://image.tmdb.org/t/p/original";
+
+
+
+
+
+$query = $_POST['booka'];
+
+$path="http://image.tmdb.org/t/p/w1280";
+$pathposter="http://image.tmdb.org/t/p/w342";
 $cleanquery=rawurlencode($query);
 $request="http://api.themoviedb.org/3/search/movie?query=$cleanquery&api_key=$apikey";
 
 $imagesrequest="http://api.themoviedb.org/3/movie/$id/images?api_key=$apikey";
 
 if (isset($_POST['booka'])){
+
 $json=file_get_contents($request);
 
 //$movie=json_decode($json);
@@ -30,14 +38,17 @@ $json=file_get_contents($request);
 //echo $json;
 //var_dump(json_decode($json));
 $array=json_decode($json, true);
-//var_dump($array);
-//echo $array['page'];
-//echo BABABAJ;
+$id=$array['results'][0]['id'];
+
 $poster=$array['results'][0]['poster_path'];
+
+
 
 $backdrop=$array['results'][0]['backdrop_path'];
 $title=$array['results'][0]['original_title'];
+$titlelong=$array['results'][0]['original_title'];
 $year=substr($array['results'][0]['release_date'], 0, 4);
+$releasedate=$array['results'][0]['release_date'];
 $id=$array['results'][0]['id'];
 $length=strlen($title);
 if($length>50) {
@@ -54,6 +65,7 @@ $imagesjson=file_get_contents($imagesrequest);
 $deeparray=json_decode($deepjson, true);
 $imagesarray=json_decode($imagesjson, true);
 $synopsis=$deeparray['overview'];
+$runtime=$deeparray['runtime'];
 $imdb=$deeparray['imdb_id'];
 end($imagesarray['backdrops']);
 $endkey=key($imagesarray['backdrops']);
@@ -73,7 +85,7 @@ print "<div id=\"tworow\" class=\"bannerrama\"><span id=\"title\">$title ($year)
 else 
 print "<div id=\"onerow\" class=\"bannerrama\"><span id=\"title\">$title ($year)</span></div>";
 ?>
-<form id="searchz" name='search' method='post' action='http://localhost/TMDB4PHP/wutt.php'>
+<form id="searchz" name='search' method='post' action=''>
  <div id="searchy" >
     <div class="input-group">
       <input name='booka' type="text" class="form-control">
@@ -90,17 +102,31 @@ print "<div id=\"onerow\" class=\"bannerrama\"><span id=\"title\">$title ($year)
 <div class="bawdy">
 
 
-<div id="poster" class="pull-right"><?php print "<img style=\"height:280px\" src=$path$poster>"; ?></div>
+<div id="poster" class="pull-right"><?php print "<img style=\"height:280px\" src=$pathposter$poster>"; ?></div>
 <div id="synopsis">
 <?php print $synopsis?>
+<?php print $imdb?>
+<?php print $runtime?>
+<?php print $releasedate ?>
+<?php print $poster ?>
+<?php print $runtime ?>
+<?php print $titlelong ?>
+<?php print $id ?>
 <a href="http://www.imdb.com/title/<?php print $imdb?>"><img src="imdb.png"></img></a>
 </div>
 </div>
 
+<div class="btn-group-vertical navb">
+  <button type="button" class="btn btn-default subdb" name="inputwatchlist" value="inputwatchlist">
+    Add to watchlist
+  </button>
+    <button type="button" class="btn btn-default subdb" name="inputwatched" value="inputwatched">
+    Watched
+  </button>
 
 <div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    Action <span class="caret"></span>
+    Change backdrop <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
 	<?php
@@ -109,6 +135,7 @@ print "<div id=\"onerow\" class=\"bannerrama\"><span id=\"title\">$title ($year)
 		print "<li><a class=\"thumbnail changebackdrop\" href=\"javascript:;\"><img id=\"imgbackdrop\" data-src=\"holder.js/100%x180\" src=$path$altbackdrop></a></li>";
 	} ?>
   </ul>
+</div>
 </div>
 
 <br>
@@ -122,5 +149,21 @@ print "<div id=\"onerow\" class=\"bannerrama\"><span id=\"title\">$title ($year)
 $('.changebackdrop').on('click', function() {
 	var backdrop = $("img", this).attr("src");
 	$("#backdrop").css({"background-image":"url(" + backdrop + ")"})
-})
+});
+$(document).ready(function(){
+    $('.subdb').click(function(){
+		var imdb = '<?php print $imdb ?>';
+		var release = '<?php print $releasedate ?>';
+		var poster = '<?php print $poster ?>';
+		var runtime = <?php print $runtime ?>;
+		var title = '<?php print $titlelong ?>';
+		var filmId = <?php print $id ?>;
+        var clickBtnValue = $(this).val();
+        var ajaxurl = 'ajax.php',
+        data =  {'action': clickBtnValue, 'name': filmId, 'imdb': imdb, 'poster': poster, 'release': release, 'runtime': runtime, 'title': title};
+        $.post(ajaxurl, data, function (response) {
+        });
+    });
+
+});
 </script>
