@@ -104,25 +104,14 @@ print "<div id=\"onerow\" class=\"bannerrama\"><span id=\"title\">$title ($year)
 
 <div id="poster" class="pull-right"><?php print "<img style=\"height:280px\" src=$pathposter$poster>"; ?></div>
 <div id="synopsis">
-<?php print $synopsis?>
-<?php print $imdb?>
-<?php print $runtime?>
-<?php print $releasedate ?>
-<?php print $poster ?>
-<?php print $runtime ?>
-<?php print $titlelong ?>
-<?php print $id ?>
+<?php echo $synopsis ?>
 <a href="http://www.imdb.com/title/<?php print $imdb?>"><img src="imdb.png"></img></a>
 </div>
 </div>
 
 <div class="btn-group-vertical navb">
-  <button type="button" class="btn btn-default subdb" name="inputwatchlist" value="inputwatchlist">
-    Add to watchlist
-  </button>
-    <button type="button" class="btn btn-default subdb" name="inputwatched" value="inputwatched">
-    Watched
-  </button>
+	<button type="button" class="btn btn-default subdb" name="inputwatchlist" value="inputwatchlist">Add to watchlist</button>
+    <button type="button" class="btn btn-default subdb" name="inputwatched" value="inputwatched">Add to watched</button>
 
 <div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

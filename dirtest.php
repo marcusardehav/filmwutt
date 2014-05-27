@@ -16,7 +16,7 @@ $db = mysql_select_db('marcusardehav', $connection);
 $apikey="180365ad85e4661b5bb055d05f7ef904";
 $path="http://image.tmdb.org/t/p/w154";
 
-$dir = 'C:\Users\marcus\Downloads\MOVIES2\30';
+$dir = 'C:\Users\marcus\Downloads\MOVIES2';
 $filelist = scandir($dir);
 
 foreach($filelist as $value) {

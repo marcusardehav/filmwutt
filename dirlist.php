@@ -38,7 +38,7 @@ $val=$value['filmid'] . "£" . $value['poster'] . "£" . $value['imdb'] . "£" .
     <img class="media-object" src="<?php echo $path,$value['poster'] ?>" alt="...">
   </a>
     <div class="btn-group-vertical pull-right boobs">
-  <button type="button" class="btn btn-default add" value="<?php echo $val?>" id="<?php echo $value['filmid'] ?>"><span class="glyphicon glyphicon-ok"></span></button>
+  <button type="button" class="btn btn-default add" value="<?php echo $val?>" id="<?php echo $value['filmid'] ?>"><span class="glyphicon glyphicon-plus"></span></button>
   <a href="http://www.imdb.com/title/<?php echo $value['imdb'] ?>" target="_blank"<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span></button></a>
   <button type="button" class="btn btn-default remove" id="<?php echo $value['filmid'] ?>"><span class="glyphicon glyphicon-remove"></span></button>
 </div>
@@ -48,7 +48,6 @@ $val=$value['filmid'] . "£" . $value['poster'] . "£" . $value['imdb'] . "£" .
 	<br>
 	<?php echo 'Runtime: ', $value['runtime'], ' minutes';?>
 	<br>
-	<?php echo 'Added to list: ', $value['added'];?>
   </div>
 </div>
 <?php } ?>
@@ -64,7 +63,7 @@ $(document).ready(function(){
 	$('.remove').click(function(){
 		$(this).closest('.media').remove();
 		var filmId = $(this).attr("id");
-		var ajaxurl = 'doRemoveFromList.php',
+		var ajaxurl = 'doRemoveFromDirlist.php',
         data =  {'name': filmId};
 		$.post(ajaxurl, data, function (response) {
         
@@ -74,7 +73,7 @@ $(document).ready(function(){
 		$(this).closest('.media').remove();
 		var filmId = $(this).attr("id");
 		var alldata = $(this).attr("value");
-		var ajaxurl = 'doMoveToWatched.php',
+		var ajaxurl = 'doMoveToWatchlist.php',
         data =  {'all':alldata};
 		$.post(ajaxurl, data, function (response) {
         
